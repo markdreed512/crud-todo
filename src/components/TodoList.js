@@ -1,16 +1,12 @@
 import React from 'react'
 
-function TodoList(props) {
+export default function TodoList(props) {
     return (
-        <ul>
-            {props.todos}
-        </ul>
+        <div>
+            {props.todos.map(todo => {
+                return(<li>{todo}</li>)
+            })}
+        </div>
     )
 }
 
-export default TodoList
-{/* <div>
-    {todos.map((todo, i) => (
-        <li key={i}>{todo}</li>
-    ))}
-    </div> */}

@@ -4,7 +4,7 @@ import Title from './components/Title'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
 function App() {
-  const [ todos, setTodos ] = useState([])
+  const [ todos, setTodos ] = useState(["test"])
   const handleSubmit = (e) => {
     e.preventDefault()
     let newTodo = e.target.children[0].value
