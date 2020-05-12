@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import Title from './components/Title'
 import Form from './components/Form'
+import TodoList from './components/TodoList'
 function App() {
-  const { todos, setTodos } = useState([])
+  const [ todos, setTodos ] = useState([])
   const handleSubmit = (e) => {
     e.preventDefault()
     let newTodo = e.target.children[0].value
     
-    setTodos(todos.push(todo))
+    setTodos(todos.concat(newTodo))
   }
 
 
@@ -16,10 +17,8 @@ function App() {
     <div>
       <Title />
       <Form handleSubmit = {handleSubmit}/>
-      
-      {/* todos.map(todo => {
-        <li>todo</li>
-      }) */}
+      <TodoList todos={todos}/>
+   
     
     </div>
   )
