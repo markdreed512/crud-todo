@@ -2,11 +2,20 @@ import React from 'react'
 
 export default function TodoList(props) {
     return (
-        <div>
-            {props.todos.map(todo => {
-                return(<li>{todo}</li>)
+        <table>
+            {props.todos.map((todo,i) => {
+                return(
+                    <tbody key={i}>
+                        <tr key={i+1}>
+                            <td key={i+2}>{todo.value}</td>
+                            <td>
+                                <button onClick={props.deleteItem} id={todo.id}>X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                )
             })}
-        </div>
+        </table>
     )
 }
 
