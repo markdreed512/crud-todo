@@ -1,9 +1,13 @@
 import React from 'react'
-
+import styled from 'styled-components'
+const Div = styled.div`
+font-family: 'Hind', sans-serif;
+font-size: 50px;
+`
 export default function Title() {
     return (
         <div>
-            <h1>CRUDdy Todo List</h1>
+            <Div>CRUDdy Todo List</Div>
         </div>
     )
 }
