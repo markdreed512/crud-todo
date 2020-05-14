@@ -5,6 +5,21 @@ import Form from './components/Form'
 import TodoList from './components/TodoList'
 function App() {
   const [ todos, setTodos ] = useState([])
+  // const getTodosFromStorage = () => {
+  //   //returns array of todos from Local storage
+  //   if(localStorage.getItem("todos")){
+  //     return localStorage.getItem("todos")
+  //   }else{
+  //     return [{
+  //       value: "test",
+  //       id: 1234
+  //     }]
+  //   }
+    
+  // }
+  // const fromStorage = getTodosFromStorage()
+  // setTodos(fromStorage)
+
   const handleSubmit = (e) => {
     let date = new Date()
     e.preventDefault()
@@ -25,13 +40,13 @@ function App() {
 
 
   return (
-    <div>
+    <>
       <Title />
       <Form handleSubmit = {handleSubmit}/>
       <TodoList todos={todos} deleteItem ={deleteItem}/>
    
     
-    </div>
+    </>
   )
 }
 
