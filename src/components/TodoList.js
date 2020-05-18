@@ -40,7 +40,7 @@ export default function TodoList(props) {
                 return (
                     <tbody style={{padding:"0"}}key={i}>
                         <tr key={i + 1}>
-                            <Checkbox type="checkbox"/>
+                            <Checkbox done="false" type="checkbox" id = {todo.id} onChange={props.handleCheck}/>
                             <Td key={i + 2}>{todo.value}</Td>
                             <td>
                                 <Button onClick={props.deleteItem} id={todo.id}>X</Button>

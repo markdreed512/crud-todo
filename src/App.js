@@ -29,13 +29,36 @@ function App() {
     },[])
     setTodos(newArr)
   }
-
+const handleCheck = (e) => {
+  if(e.target.done === "true"){
+    e.target.done = "false"
+  }else{
+    e.target.done = "true"
+  }
+  //find item in state
+  //match id's
+  //get id of checked item
+  console.log(e.target.id)
+  //for each todo obj in state arr, if id's match, changed checked
+  todos.forEach(todo=>{
+    if(todo.id === e.target.id){
+      //how do we use setTodo to update?
+      todo.checked = e.target.done === "true"? true : false
+    }
+  })
+  //change checked property
+  //save in local storage(useEffect already doing this?)
+}
 
   return (
     <>
       <Title />
       <Form handleSubmit = {handleSubmit}/>
-      <TodoList todos={todos} deleteItem ={deleteItem}/>
+      <TodoList 
+        todos={todos} 
+        handleCheck = {handleCheck}
+        deleteItem ={deleteItem}
+      />
    
     
     </>
