@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Title from './components/Title'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
 function App() {
-  localStorage.removeItem("todos")
-  const [ todos, setTodos ] = useState(localStorage.getItem("todos") || [{value:"test...",id: 12345,checked: false}])
-
+  // localStorage.removeItem("todos")
+  const [ todos, setTodos ] = useState(JSON.parse(localStorage.getItem("todos")) || [])
+  useEffect(()=>{
+    localStorage.setItem("todos", JSON.stringify(todos))
+  })
   const handleSubmit = (e) => {
     let date = new Date()
     e.preventDefault()
@@ -16,7 +18,8 @@ function App() {
       checked: false
     }
     setTodos(todos.concat(newTodo))
-    localStorage.setItem("todos", JSON.stringify(todos))
+    //console.log(todos)--added new todo to state
+    
     e.target.children[0].value = ""
   }
   const deleteItem = (e) => {

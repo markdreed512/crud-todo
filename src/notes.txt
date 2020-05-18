@@ -1,0 +1,14 @@
+Problem: 
+on submit, adds new todo obj to state array
+then adds state to local storage (supposedly -- it doesn't)
+on refresh it doesn't load the most recent todo (because it didn't add it to locSt)
+
+tried: 
+-console.log state after setting it  res: expected (updated state)
+-I suspect it doesn't run the set local storage immediately and    I'll need to use useEffect hook -- look into it.
+-useEffect added right after setState in handleSubmit function.
+error:  Line 20:5:  React Hook "useEffect" is called in function "handleSubmit" which is neither a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+-I'll try to move it outside the function (still inside app.js fc)
+Solution: 
+-move it outside the function
+-useEffect just hangs out waiting for something to happen (what is it waiting for?)

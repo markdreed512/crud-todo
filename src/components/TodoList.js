@@ -19,10 +19,10 @@ const Td = styled.td`
     font-family: 'Hind', sans-serif;
     margin: 0;
 `
-const ButtonTd = styled.td`
-    width: 20%;
-    text-align: left !important;
-`
+// const ButtonTd = styled.td`
+//     width: 20%;
+//     text-align: left !important;
+// `
 const Button = styled.button`
     font-size: 20px;
     background-color: pink;
