@@ -4,7 +4,7 @@ import Title from './components/Title'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
 function App() {
-  // localStorage.removeItem("todos")
+  //  localStorage.removeItem("todos")
   const [ todos, setTodos ] = useState(JSON.parse(localStorage.getItem("todos")) || [])
   useEffect(()=>{
     localStorage.setItem("todos", JSON.stringify(todos))
@@ -35,19 +35,25 @@ const handleCheck = (e) => {
   }else{
     e.target.done = "true"
   }
-  //find item in state
-  //match id's
-  //get id of checked item
-  console.log(e.target.id)
-  //for each todo obj in state arr, if id's match, changed checked
-  todos.forEach(todo=>{
-    if(todo.id === e.target.id){
-      //how do we use setTodo to update?
-      todo.checked = e.target.done === "true"? true : false
-    }
-  })
-  //change checked property
-  //save in local storage(useEffect already doing this?)
+ 
+  setTodos(newState)
+  
+  function newState(){
+    return todos.map(obj => {
+      if(obj.id === parseInt(e.target.id)){
+        console.log("matched")
+        if(e.target.done === "true"){
+          obj.checked = true
+        }else{
+          obj.checked = false
+        }
+
+      }
+      return obj
+    })
+  }
+  
+  console.log(todos)
 }
 
   return (

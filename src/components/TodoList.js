@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 const Table = styled.table`
     margin: 20px;
-    width: 35%;
     display: inline-block;
     `
 const Checkbox = styled.input`
@@ -14,7 +13,9 @@ const Td = styled.td`
     background-color: rgba(0,100,100,.5);
     color: white;
     font-size: 20px;
-    min-width: 300px;
+    min-width: 100px;
+    max-width: 300px;
+    width: 300px;
     // padding: 5px;
     font-family: 'Hind', sans-serif;
     margin: 0;
@@ -40,7 +41,10 @@ export default function TodoList(props) {
                 return (
                     <tbody style={{padding:"0"}}key={i}>
                         <tr key={i + 1}>
-                            <Checkbox done="false" type="checkbox" id = {todo.id} onChange={props.handleCheck}/>
+                            <Checkbox done="false" type="checkbox" id = {todo.id} onChange={props.handleCheck}
+                            //conditionally add or delete checked attribute on checkbox
+                            checked = {todo.checked? "checked" : ""}
+                            />
                             <Td key={i + 2}>{todo.value}</Td>
                             <td>
                                 <Button onClick={props.deleteItem} id={todo.id}>X</Button>
