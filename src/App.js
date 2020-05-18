@@ -4,30 +4,19 @@ import Title from './components/Title'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
 function App() {
-  const [ todos, setTodos ] = useState([])
-  // const getTodosFromStorage = () => {
-  //   //returns array of todos from Local storage
-  //   if(localStorage.getItem("todos")){
-  //     return localStorage.getItem("todos")
-  //   }else{
-  //     return [{
-  //       value: "test",
-  //       id: 1234
-  //     }]
-  //   }
-    
-  // }
-  // const fromStorage = getTodosFromStorage()
-  // setTodos(fromStorage)
+  localStorage.removeItem("todos")
+  const [ todos, setTodos ] = useState(localStorage.getItem("todos") || [{value:"test...",id: 12345,checked: false}])
 
   const handleSubmit = (e) => {
     let date = new Date()
     e.preventDefault()
     let newTodo = {
       value: e.target.children[0].value,
-      id: date.getTime()
+      id: date.getTime(),
+      checked: false
     }
     setTodos(todos.concat(newTodo))
+    localStorage.setItem("todos", JSON.stringify(todos))
     e.target.children[0].value = ""
   }
   const deleteItem = (e) => {
