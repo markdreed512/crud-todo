@@ -6,6 +6,7 @@ import TodoList from './components/TodoList'
 function App() {
   //  localStorage.removeItem("todos")
   const [ todos, setTodos ] = useState(JSON.parse(localStorage.getItem("todos")) || [])
+  const [ modalVal, setModalVal ] = useState("none")
   useEffect(()=>{
     localStorage.setItem("todos", JSON.stringify(todos))
   })
@@ -30,40 +31,55 @@ function App() {
     setTodos(newArr)
   }
 const handleCheck = (e) => {
-  if(e.target.done === "true"){
-    e.target.done = "false"
-  }else{
-    e.target.done = "true"
-  }
+  // if(e.target.done === "true"){
+  //   e.target.done = "false"
+  // }else{
+  //   e.target.done = "true"
+  // }
  
-  setTodos(newState)
+//   setTodos(newState)
   
-  function newState(){
-    return todos.map(obj => {
-      if(obj.id === parseInt(e.target.id)){
-        console.log("matched")
-        if(e.target.done === "true"){
-          obj.checked = true
-        }else{
-          obj.checked = false
-        }
+//   function newState(){
+//     return todos.map(obj => {
+//       if(obj.id === parseInt(e.target.id)){
+//         console.log("matched")
+//         if(e.target.done === "true"){
+//           obj.checked = true
+//         }else{
+//           obj.checked = false
+//         }
 
-      }
-      return obj
-    })
-  }
+//       }
+//       return obj
+//     })
+//   }
   
-  console.log(todos)
+//   console.log(todos)
 }
-
+const handleEdit = (e) => {
+  //find obj, get value
+  console.log(parseInt(e.target.id))
+  todos.forEach(todoObj=>{
+    if(todoObj.id === parseInt(e.target.id)){
+      setModalVal(todoObj.value)
+    }
+  })
+  //render editModal
+  //populate modal with value
+  //get id of item to set state
+  
+}
   return (
     <>
+      
       <Title />
       <Form handleSubmit = {handleSubmit}/>
       <TodoList 
         todos={todos} 
         handleCheck = {handleCheck}
         deleteItem ={deleteItem}
+        handleEdit = {handleEdit}
+        modalValue = {modalVal}
       />
    
     
