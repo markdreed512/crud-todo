@@ -46,7 +46,7 @@ export default function TodoList(props) {
 
     return (
         <>
-        <EditModal value = {props.modalValue}/> 
+        <EditModal hidden = {props.hidden} value = {props.modalValue}/> 
         <Table>
             {props.todos.map((todo, i) => {
                 return (

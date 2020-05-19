@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-
 const Modal = styled.div`
     position: absolute;
     background-color: rgba(0,0,0, .9);
     padding: 20px 20px 30px 20px;
     left: 32%;
     top: 20%;
-
+    
 `
 const Text = styled.p`
     color: teal;
@@ -24,9 +23,9 @@ font-size: 30px;
 
 function EditModal(props) {
     return (
-        <Modal>
+        <Modal hidden={props.hidden}>
             <Text>Edit Item</Text>
-            <form action="submit">
+            <form action="submit" >
                 <Input type="text" value={props.value}/>
                 <Button>OK</Button>
             </form>

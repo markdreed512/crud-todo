@@ -10,6 +10,7 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("todos", JSON.stringify(todos))
   })
+  const [modalHidden, setModalHidden] = useState(true)
   const handleSubmit = (e) => {
     let date = new Date()
     e.preventDefault()
@@ -57,8 +58,8 @@ const handleCheck = (e) => {
 //   console.log(todos)
 }
 const handleEdit = (e) => {
+  setModalHidden(false)
   //find obj, get value
-  console.log(parseInt(e.target.id))
   todos.forEach(todoObj=>{
     if(todoObj.id === parseInt(e.target.id)){
       setModalVal(todoObj.value)
@@ -80,6 +81,7 @@ const handleEdit = (e) => {
         deleteItem ={deleteItem}
         handleEdit = {handleEdit}
         modalValue = {modalVal}
+        hidden = {modalHidden}
       />
    
     
