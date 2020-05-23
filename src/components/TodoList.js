@@ -46,21 +46,21 @@ export default function TodoList(props) {
 
     return (
         <>
-        <EditModal hidden = {props.hidden} value = {props.modalValue}/> 
+        <EditModal handleChange = {props.handleChange} modalValue = {props.modalValue} submit = {props.submit} hidden = {props.hidden} value = {props.modalValue}/> 
         <Table>
             {props.todos.map((todo, i) => {
                 return (
                     <tbody style={{padding:"0"}}key={i}>
                         <tr key={i + 1}>
                             <td>
-                            <Checkbox done="false" type="checkbox" id = {todo.id} onChange={props.handleCheck}
+                            <Checkbox type="checkbox" id = {todo.id} onChange={props.handleCheck}
                             //conditionally add or delete checked attribute on checkbox
                             // checked = {todo.checked? "checked" : ""
                     // }
                             /></td>
                             <Td key={i + 2}>{todo.value}</Td>
                             <td>
-                                <EditButton onClick={props.handleEdit} id={todo.id+"E"}>Edit</EditButton>
+                                <EditButton onClick={props.handleEdit} id={todo.id}>Edit</EditButton>
                             </td>
                             <td>
                                 <Button onClick={props.deleteItem} id={todo.id}>X</Button>

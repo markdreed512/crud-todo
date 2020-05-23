@@ -22,11 +22,12 @@ font-size: 30px;
 `
 
 function EditModal(props) {
+    
     return (
-        <Modal hidden={props.hidden}>
+        <Modal hidden={props.hidden} >
             <Text>Edit Item</Text>
-            <form action="submit" >
-                <Input type="text" value={props.value}/>
+            <form action="submit"  onSubmit={props.submit}>
+                <Input  onChange={props.handleChange} type="text" value={props.modalValue}/>
                 <Button>OK</Button>
             </form>
         </Modal>
