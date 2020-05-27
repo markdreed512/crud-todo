@@ -1,4 +1,15 @@
 Problem: 
+********************
+When toggling checkbox:
+index.js:1 Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're accessing the property `target` on a released/nullified synthetic event. This is set to null. If you must keep the original synthetic event around, use event.persist(). (this worked)
+then...
+ Cannot read property 'id' of null
+
+ Still can't toggle back and forth from true to false on the checkboxes except for the first one you toggle after refresh browser
+
+ Fixed: I originally had an arrow function that returned a mapped newState obj passed into setTodos. removed arrow function. It works. Why??
+
+********************
 on submit, adds new todo obj to state array
 then adds state to local storage (supposedly -- it doesn't)
 on refresh it doesn't load the most recent todo (because it didn't add it to locSt)
@@ -11,4 +22,4 @@ error:  Line 20:5:  React Hook "useEffect" is called in function "handleSubmit" 
 -I'll try to move it outside the function (still inside app.js fc)
 Solution: 
 -move it outside the function
--useEffect just hangs out waiting for something to happen (what is it waiting for?)
+-useEffect just hangs out waiting for something to happen (what is it waiting for? -- answer: any life cycle event)

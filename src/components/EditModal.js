@@ -27,7 +27,7 @@ function EditModal(props) {
         <Modal hidden={props.hidden} >
             <Text>Edit Item</Text>
             <form action="submit"  onSubmit={props.submit}>
-                <Input  onChange={props.handleChange} type="text" value={props.modalValue}/>
+                <Input  onChange={props.handleChange} type="text" defaultValue={props.modalValue}/>
                 <Button>OK</Button>
             </form>
         </Modal>

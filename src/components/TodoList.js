@@ -50,13 +50,14 @@ export default function TodoList(props) {
         <Table>
             {props.todos.map((todo, i) => {
                 return (
+                    
                     <tbody style={{padding:"0"}}key={i}>
+                        
                         <tr key={i + 1}>
                             <td>
                             <Checkbox type="checkbox" id = {todo.id} onChange={props.handleCheck}
                             //conditionally add or delete checked attribute on checkbox
-                            // checked = {todo.checked? "checked" : ""
-                    // }
+                            checked = {todo.checked}
                             /></td>
                             <Td key={i + 2}>{todo.value}</Td>
                             <td>

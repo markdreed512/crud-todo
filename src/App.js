@@ -32,25 +32,25 @@ function App() {
     setTodos(newArr)
   }
   const handleCheck = (e) => {
+    e.persist()
     //e.target is the checkbox
-    console.log(e.target)
-    // setTodos(newState)
+    setTodos(todos.map(toodoo => {
+      if (toodoo.id === parseInt(e.target.id)) {
+        console.log("matched")
+        if (toodoo.checked === false) {
+          toodoo.checked = true
+          console.log("here")
+        } else {
+          toodoo.checked = false
+          console.log("there")
+        }
 
-    // function newState() {
-    //   let newArr = todos.map(obj => {
-    //     if (obj.id === parseInt(e.target.id)) {
-    //       console.log("matched")
-    //       if (obj.checked === false) {
-    //         obj.checked = true
-    //       } else {
-    //         obj.checked = false
-    //       }
+      }
+      return toodoo
+      console.log(todos)
+    }))
 
-    //     }
-    //     return obj
-    //   })
-    //   return newArr
-    // }
+    
 
     // console.log(todos)
   }
@@ -87,11 +87,16 @@ function App() {
     setTodos(newTodos)
     setModalHidden(true)
   }
-  const handleChange = (e) => {
-    // console.log("handling Change...")
-    // console.log(e.target)
-
-  }
+  // const handleChange = (e) => {
+  //   // console.log("handling Change...")
+  //   console.log(e.target)
+  //   if(e.target.checked){
+  //     e.target.checked = ""
+  //   }
+  //   else{
+      
+  //   }
+  // }
   return (
     <>
 
@@ -105,7 +110,7 @@ function App() {
         modalValue={modalValue}
         hidden={modalHidden}
         submit={submit}
-        handleChange={handleChange}
+        // handleChange={handleChange}
       />
 
 
