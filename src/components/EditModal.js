@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 const Modal = styled.div`
     position: absolute;
@@ -22,12 +22,18 @@ font-size: 30px;
 `
 
 function EditModal(props) {
+    //the input needs the value of the todo passed to it from todoList component
+    const [value, setValue] = useState(props.modalVal);
+// This will launch only if propName value has chaged.
+useEffect(() => { 
+    setValue(props.modalVal) 
     
+    }, [props.modalVal]);
     return (
         <Modal hidden={props.hidden} >
             <Text>Edit Item</Text>
             <form action="submit"  onSubmit={props.submit}>
-                <Input  onChange={props.handleChange} type="text" defaultValue={props.modalValue}/>
+                <Input  onChange={props.handleChange} type="text" defaultValue={value}/>
                 <Button>OK</Button>
             </form>
         </Modal>

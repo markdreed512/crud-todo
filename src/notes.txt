@@ -1,5 +1,22 @@
-Problem: 
+*******************
+Problem: on edit button click, modalValue state is "set", then
+modal is set to visible. It should render with updated modalValue state, but instead uses default state.
+
+research yeilds: setState doesn't immediately set state, but puts it in a queue. 
+
+How to update component when state is updated?
+It should do this automatically, right?
+Maybe because it's already visible it keeps previous value 
+try useEffect to make it visible only after state updates?
+-result:
+automatically making modal visible due to useEffect triggering on initial render
+ fixed that by using a boolean to simulate didMount (to determine if it was the initial render or subsequent updates to modalValue), but even though the modalValue is updating and the modal now renders on edit button click, it still has default value in it. 
+
+ Try moving all state logic to modal component instead of parent
+ https://stackoverflow.com/questions/38892672/react-why-child-component-doesnt-update-when-prop-changes
+
 ********************
+Problem: 
 When toggling checkbox:
 index.js:1 Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're accessing the property `target` on a released/nullified synthetic event. This is set to null. If you must keep the original synthetic event around, use event.persist(). (this worked)
 then...

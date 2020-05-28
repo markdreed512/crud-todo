@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import EditModal from './EditModal'
 const Table = styled.table`
@@ -43,35 +43,59 @@ const EditButton = styled.button`
     font-family: 'Hind', sans-serif;
  `
 export default function TodoList(props) {
+    const [initialRender, setInitialRender] = useState(true)
+    const [modalHidden, setModalHidden] = useState(true)
+    // const [modalId, setModalId] = useState(null)
+    const [modalValue, setModalValue] = useState("none!")
+    useEffect(() => {
+        console.log(modalValue)
+        if (initialRender) {
+            setInitialRender(false)
+            
+        }else {
+            setModalHidden(false)
+            setInitialRender(false)
+        }
+    }, [modalValue])
+    const handleEditBtnPressed = (e) => {
+        let todo = props.todos.filter(obj => {
+            return obj.id === parseInt(e.target.id)
+        })
+        setModalValue(todo[0].value)
+        //setModalValue doesn't work (yet?)
+        // console.log(modalValue)
+        // setModalId(parseInt(e.target.id))
 
+
+    }
+    const getTodoValue = () => {
+        return ("test....")
+    }
     return (
         <>
-        <EditModal handleChange = {props.handleChange} modalValue = {props.modalValue} submit = {props.submit} hidden = {props.hidden} value = {props.modalValue}/> 
-        <Table>
-            {props.todos.map((todo, i) => {
-                return (
-                    
-                    <tbody style={{padding:"0"}}key={i}>
-                        
-                        <tr key={i + 1}>
-                            <td>
-                            <Checkbox type="checkbox" id = {todo.id} onChange={props.handleCheck}
-                            //conditionally add or delete checked attribute on checkbox
-                            checked = {todo.checked}
-                            /></td>
-                            <Td key={i + 2}>{todo.value}</Td>
-                            <td>
-                                <EditButton onClick={props.handleEdit} id={todo.id}>Edit</EditButton>
-                            </td>
-                            <td>
-                                <Button onClick={props.deleteItem} id={todo.id}>X</Button>
-                            </td>
-                            
-                        </tr>
-                    </tbody>
-                )
-            })}
-        </Table>
+            <EditModal handleChange={props.handleChange} submit={props.submit} hidden={modalHidden} modalVal={modalValue} />
+            <Table>
+                {props.todos.map((todo, i) => {
+                    return (
+                        <tbody style={{ padding: "0" }} key={i}>
+                            <tr key={i}>
+                                <td>
+                                    <Checkbox type="checkbox" id={todo.id} onChange={props.handleCheck}
+                                        //conditionally add or delete checked attribute on checkbox
+                                        checked={todo.checked}
+                                    /></td>
+                                <Td key={i}>{todo.value}</Td>
+                                <td>
+                                    <EditButton onClick={handleEditBtnPressed} id={todo.id}>Edit</EditButton>
+                                </td>
+                                <td>
+                                    <Button onClick={props.deleteItem} id={todo.id}>X</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    )
+                })}
+            </Table>
         </>
     )
 }
