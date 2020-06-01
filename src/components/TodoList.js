@@ -21,10 +21,6 @@ const Td = styled.td`
     font-family: 'Hind', sans-serif;
     margin: 0;
 `
-// const ButtonTd = styled.td`
-//     width: 20%;
-//     text-align: left !important;
-// `
 const Button = styled.button`
     font-size: 20px;
     background-color: pink;
@@ -54,23 +50,23 @@ export default function TodoList(props) {
             
         }
     }, [modalValue])
-    const handleEditBtnPressed = (e) => {
-        let todo = props.todos.filter(obj => {
-            return obj.id === parseInt(e.target.id)
-        })
-        setModalValue(todo[0].value)
-        //setModalValue doesn't work (yet?)
-        // console.log(modalValue)
-        // setModalId(parseInt(e.target.id))
+    // const handleEditBtnPressed = (e) => {
+    //     let todo = props.todos.filter(obj => {
+    //         return obj.id === parseInt(e.target.id)
+    //     })
+    //     setModalValue(todo[0].value)
+    //     //setModalValue doesn't work (yet?)
+    //     // console.log(modalValue)
+    //     // setModalId(parseInt(e.target.id))
 
 
-    }
+    // }
     const getTodoValue = () => {
         return ("test....")
     }
     return (
         <>
-            <EditModal handleChange={props.handleChange} submit={props.submit}  modalVal={modalValue} />
+            <EditModal handleChange={props.handleChange} hidden = {props.hidden} submit={props.submit}  modalVal={props.modalValue} />
             <Table>
                 {props.todos.map((todo, i) => {
                     return (
@@ -83,7 +79,7 @@ export default function TodoList(props) {
                                     /></td>
                                 <Td key={i}>{todo.value}</Td>
                                 <td>
-                                    <EditButton onClick={handleEditBtnPressed} id={todo.id}>Edit</EditButton>
+                                    <EditButton onClick={props.handleEditClick} id={todo.id}>Edit</EditButton>
                                 </td>
                                 <td>
                                     <Button onClick={props.deleteItem} id={todo.id}>X</Button>
