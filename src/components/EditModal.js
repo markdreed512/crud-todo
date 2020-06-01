@@ -6,7 +6,6 @@ const Modal = styled.div`
     padding: 20px 20px 30px 20px;
     left: 32%;
     top: 20%;
-    
 `
 const Text = styled.p`
     color: teal;
@@ -20,20 +19,32 @@ const Input = styled.input`
 const Button = styled.button`
 font-size: 30px;
 `
-
 function EditModal(props) {
     //the input needs the value of the todo passed to it from todoList component
     const [value, setValue] = useState(props.modalVal);
-// This will launch only if propName value has chaged.
-useEffect(() => { 
-    setValue(props.modalVal) 
-    
+    const[hidden, setHidden] = useState(true)
+    const[initialRender, setInitialRender] = useState(true)
+    useEffect(()=>{
+        setInitialRender(false)
+    },[])
+    useEffect(() => {
+        setValue(props.modalVal)
+        console.log(props.modalVal)
     }, [props.modalVal]);
+    //try: render visible only after state updated useEffect
+    useEffect(()=>{
+        console.log(value)
+        //if not initial render: setHidden(false)
+        if(!initialRender){
+            setHidden(false)
+        }
+        
+    },[value])
     return (
-        <Modal hidden={props.hidden} >
+        <Modal hidden={hidden} >
             <Text>Edit Item</Text>
-            <form action="submit"  onSubmit={props.submit}>
-                <Input  onChange={props.handleChange} type="text" defaultValue={value}/>
+            <form action="submit" onSubmit={props.submit}>
+                <Input onChange={props.handleChange} type="text" defaultValue={props.modalValue} />
                 <Button>OK</Button>
             </form>
         </Modal>

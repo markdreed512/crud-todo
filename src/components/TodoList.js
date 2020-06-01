@@ -44,7 +44,7 @@ const EditButton = styled.button`
  `
 export default function TodoList(props) {
     const [initialRender, setInitialRender] = useState(true)
-    const [modalHidden, setModalHidden] = useState(true)
+    // const [modalHidden, setModalHidden] = useState(true)
     // const [modalId, setModalId] = useState(null)
     const [modalValue, setModalValue] = useState("none!")
     useEffect(() => {
@@ -52,9 +52,6 @@ export default function TodoList(props) {
         if (initialRender) {
             setInitialRender(false)
             
-        }else {
-            setModalHidden(false)
-            setInitialRender(false)
         }
     }, [modalValue])
     const handleEditBtnPressed = (e) => {
@@ -73,7 +70,7 @@ export default function TodoList(props) {
     }
     return (
         <>
-            <EditModal handleChange={props.handleChange} submit={props.submit} hidden={modalHidden} modalVal={modalValue} />
+            <EditModal handleChange={props.handleChange} submit={props.submit}  modalVal={modalValue} />
             <Table>
                 {props.todos.map((todo, i) => {
                     return (
