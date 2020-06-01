@@ -7,6 +7,7 @@ function App() {
   //  localStorage.removeItem("todos")
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || [])
   const [modalValue, setModalValue] = useState("none...")
+  const [currEditId, setCurrEditId] = useState(null)
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
   })
@@ -68,12 +69,19 @@ function App() {
     console.log("handling Change...")
     console.log(e.target.value)
     setModalValue(e.target.value)
-    // if(e.target.checked){
-    //   e.target.checked = ""
-    // }
-    // else{
-      
-    // }
+    //copy state 
+    let newTodos = todos
+    //match todo
+    newTodos.forEach(todo => {
+      if(todo.id === currEditId){
+        //mutate matched todo
+        todo.value = e.target.value
+      }
+    })
+    
+    //update state
+    setTodos(newTodos)
+    
   }
   const handleEditClick = (e) => {
          let todo = todos.filter(obj => {
@@ -81,6 +89,8 @@ function App() {
         })
         setModalValue(todo[0].value)
         setModalHidden(!modalHidden)
+        console.log(typeof e.target.id)
+        setCurrEditId(parseInt(e.target.id))
   }
   return (
     <>
