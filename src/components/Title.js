@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const Div = styled.div`
     font-family: 'Hind', sans-serif;
     font-size: 50px;
+    margin-top: 100px;
 `
 export default function Title() {
     return (
