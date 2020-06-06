@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const Input = styled.input`
     font-size: 30px;
     padding: 5px;
+    max-width: 80%;
 `
 const Button = styled.button`
     font-size: 30px;
