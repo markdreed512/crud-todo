@@ -4,13 +4,12 @@ import Title from './components/Title'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
 function App() {
-  //  localStorage.removeItem("todos")
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || [])
-  const [modalValue, setModalValue] = useState("none...")
+  const [modalValue, setModalValue] = useState("")
   const [currEditId, setCurrEditId] = useState(null)
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
-  })
+  },[todos])
   const [modalHidden, setModalHidden] = useState(true)
   // const [modalId, setModalId] = useState(null)
   const handleSubmit = (e) => {
@@ -51,19 +50,22 @@ function App() {
     }))
   }
  
-  // const submit = (e) => {
-  //   e.preventDefault()
-  //   //use modalId to find todo
-  //   //set value to e.target...
-  //   let newTodos = todos.map(todoObj => {
-  //     if (todoObj.id === modalId) {
-  //       todoObj.value = e.target.children[0].value
-  //     }
-  //     return todoObj
-  //   })
-  //   setTodos(newTodos)
-  //   setModalHidden(true)
-  // }
+  const submit = (e) => {
+    e.preventDefault()
+    console.log(e.target)
+    console.log(currEditId)
+    //use currentEditId to find todo
+    //set value to e.target...
+    let newTodos = todos.map(todoObj => {
+      if (todoObj.id === currEditId) {
+        todoObj.value = e.target.children[0].value
+      }
+      return todoObj
+    })
+    setTodos(newTodos)
+    //save in localStorage
+    setModalHidden(true)
+  }
   const handleChange = (e) => {
     //needs to change modalValue state
     console.log("handling Change...")
@@ -89,7 +91,6 @@ function App() {
         })
         setModalValue(todo[0].value)
         setModalHidden(!modalHidden)
-        console.log(typeof e.target.id)
         setCurrEditId(parseInt(e.target.id))
   }
   return (
@@ -104,7 +105,7 @@ function App() {
         // handleEdit={handleEdit}
         modalValue={modalValue}
         hidden={modalHidden}
-        // submit={submit}
+        submit={submit}
         handleChange={handleChange}
         handleEditClick = {handleEditClick}
       />

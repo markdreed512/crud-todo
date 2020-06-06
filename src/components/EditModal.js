@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 const Modal = styled.div`
     position: absolute;
@@ -20,22 +20,7 @@ const Button = styled.button`
 font-size: 30px;
 `
 function EditModal(props) {
-    // const [value, setValue] = useState(props.modalVal);
-    const[hidden, setHidden] = useState(true)
-    // const[initialRender, setInitialRender] = useState(true)
-    // useEffect(()=>{
-    //     setInitialRender(false)
-    // },[])
-    // useEffect(() => {
-    //     setValue(props.modalVal)//<-why doesn't this update input value?
-    //     console.log(props.modalVal)
-    // }, [props.modalVal]);
-    // useEffect(()=>{
-    //     console.log(value)
-    //     if(!initialRender){
-    //         setHidden(false)
-    //     }
-    // },[value])
+    
     return (
         <Modal hidden={props.hidden} >
             <Text>Edit Item</Text>
